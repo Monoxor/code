@@ -108,7 +108,7 @@ function PlasmicHome__RenderFunc(props: {
                     sty.box__ab5Kr
                   )}
                 >
-                  {"Upcoming Tech Conferences"}
+                  {"Upcoming Toech Conferences"}
                 </div>
               }
             />
