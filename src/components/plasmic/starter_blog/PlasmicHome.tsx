@@ -33,6 +33,8 @@ import HomeHeader from "../../HomeHeader"; // plasmic-import: tEo7NoT2mFZc1/comp
 import ListItem from "../../ListItem"; // plasmic-import: dJmYHuRwCVQzR/component
 import Footer from "../../Footer"; // plasmic-import: 24wkGHGvgE9HH/component
 
+import { useScreenVariants } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: 8PcldN-v8wN5t/globalVariant
+
 import "@plasmicapp/react-web/lib/plasmic.css";
 import * as defaultcss from "../plasmic__default_style.module.css"; // plasmic-import: global/defaultcss
 import * as projectcss from "./plasmic_starter_blog.module.css"; // plasmic-import: 2XiRTrANos1tumXyUCiwGi/projectcss
@@ -67,6 +69,10 @@ function PlasmicHome__RenderFunc(props: {
   forNode?: string;
 }) {
   const { variants, args, overrides, forNode, dataFetches } = props;
+
+  const globalVariants = ensureGlobalVariants({
+    screen: useScreenVariants()
+  });
 
   return (
     <React.Fragment>
@@ -115,7 +121,37 @@ function PlasmicHome__RenderFunc(props: {
               className={classNames(defaultcss.all, sty.container)}
             >
               <ListItem
-                date={"April 1, 2020"}
+                date={
+                  <React.Fragment>
+                    <div
+                      className={classNames(
+                        defaultcss.all,
+                        defaultcss.__wab_text,
+                        sty.box__qZua
+                      )}
+                    >
+                      {"January 1, 2020"}
+                    </div>
+
+                    {(
+                      hasVariant(globalVariants, "screen", "desktop")
+                        ? true
+                        : false
+                    ) ? (
+                      <div
+                        className={classNames(
+                          defaultcss.all,
+                          defaultcss.__wab_text,
+                          sty.box__iICY
+                        )}
+                      >
+                        {hasVariant(globalVariants, "screen", "desktop")
+                          ? "By Pankaj Moolrajani"
+                          : "Enter some text"}
+                      </div>
+                    ) : null}
+                  </React.Fragment>
+                }
                 description={"3 months later, I'm still blogging"}
                 title={"Fourth post"}
               />

@@ -1,0 +1,10 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 567px;
+  height: 337px;
+}
+.box {
+  position: relative;
+}

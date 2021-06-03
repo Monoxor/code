@@ -56,6 +56,9 @@
 .container > :global(.__wab_flex-container) > :global(.__wab_slot) > * {
   margin-top: 32px;
 }
+.box__iICY {
+  position: relative;
+}
 .listItem__iqAd:global(.__wab_instance) {
   position: relative;
 }

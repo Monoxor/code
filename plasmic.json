@@ -117,6 +117,19 @@
           "cssFilePath": "plasmic/starter_blog/PlasmicAuthorBio.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "ujzRZF_qu5",
+          "name": "NewComponent",
+          "type": "managed",
+          "projectId": "2XiRTrANos1tumXyUCiwGi",
+          "renderModuleFilePath": "plasmic/starter_blog/PlasmicNewComponent.tsx",
+          "importSpec": {
+            "modulePath": "NewComponent.tsx"
+          },
+          "cssFilePath": "plasmic/starter_blog/PlasmicNewComponent.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
