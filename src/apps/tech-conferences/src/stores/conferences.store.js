@@ -4,7 +4,7 @@ import axios from "axios";
 
 class ConferencesStore {
     count = 0
-    conferences = null
+    conferences = []
     offset = 0
     constructor() {
         // Call it here
@@ -26,12 +26,29 @@ class ConferencesStore {
 
 
     async getNextBatch() {
+        console.log('getNextBatch')
+        console.log(this.conferences.length)
         let response = await axios.get('https://60c6093a19aa1e001769e9f3.mockapi.io/conferences')
         if (response.status === 200) {
-            this.conferences = response.data.slice(this.offset, this.offset+3)
-            
-        } else 
-        { 
+            let nextBatch = response.data.slice(this.offset, this.offset+5)
+            this.offset = this.offset + 5
+            console.log('this.conferences: ')
+            console.log(this.conferences)
+            console.log('nextBatch')
+            console.log(nextBatch)
+            if (this.conferences.length === 0) {
+                console.log('first batch')
+                this.conferences = nextBatch
+            } else {
+                console.log('concat')
+                this.conferences = this.conferences.concat(nextBatch)
+                console.log(this.conferences.length)
+            }
+            // if (this.conferences && nextBatch) {
+            //     this.conferences.concat(nextBatch)
+            // }
+            // this.conferences = nextBatch
+        } else { 
             this.conferences = null
         }
         return this.conferences

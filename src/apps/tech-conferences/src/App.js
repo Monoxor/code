@@ -8,7 +8,8 @@ import ConferencesStore from './stores/conferences.store'
 import Header from './components/Header.component'
 import ConferenceSummary from './components/ConferenceSummary.component'
 import React, { Component } from 'react'
-import { light } from '@material-ui/core/styles/createPalette';
+import InfiniteScroll from 'react-infinite-scroll-component';
+
 
 class App extends Component {
   async componentDidMount() {
@@ -20,13 +21,25 @@ class App extends Component {
     if (!data) {
       return 
     }
-    let conferences = []
-    data.map((conference)=>{
-      conferences.push(
-        <ConferenceSummary key={Math.random()} conference={conference} />
+    // let conferences = []
+    // data.map((conference)=>{
+    //   conferences.push(
+    //     <ConferenceSummary key={Math.random()} conference={conference} />
+    //   )
+    // })
+    // return conferences
+      return (
+        <InfiniteScroll
+          dataLength={ConferencesStore.offset+3}
+          next={async () => await ConferencesStore.getNextBatch()}
+          hasMore={true}
+          loader={<h4>Loading...</h4>}
+        >
+          {data.map((conference) => (
+            <ConferenceSummary key={Math.random()} conference={conference} />
+          ))}
+        </InfiniteScroll>
       )
-    })
-    return conferences
   }
   render () {
     let conferences=ConferencesStore.conferences
