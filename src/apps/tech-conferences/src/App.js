@@ -12,7 +12,7 @@ import { light } from '@material-ui/core/styles/createPalette';
 
 class App extends Component {
   async componentDidMount() {
-    await ConferencesStore.getConfernces()
+    await ConferencesStore.getNextBatch()
   }
 
   _renderConferencesList() {
@@ -23,7 +23,7 @@ class App extends Component {
     let conferences = []
     data.map((conference)=>{
       conferences.push(
-        <ConferenceSummary key={Math.random()} />
+        <ConferenceSummary key={Math.random()} conference={conference} />
       )
     })
     return conferences
@@ -47,8 +47,6 @@ class App extends Component {
             </Box>
             <Box id='conferences-list' style={{marginRight: 30}}>
               {this._renderConferencesList()}
-              <ConferenceSummary />
-              <ConferenceSummary />
             </Box>
           </Box>
           <Box style={{flex: 5, backgroundColor: 'blue'}}>2</Box>

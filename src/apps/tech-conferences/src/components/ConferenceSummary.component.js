@@ -2,7 +2,7 @@ import {
     Box, Chip, 
 } from '@material-ui/core'
 
-function ConferenceSummary() {
+function ConferenceSummary(props) {
   return (
     <Box id='conference-card' 
       style={{
@@ -24,7 +24,7 @@ function ConferenceSummary() {
         style={{flex: 3, display: 'flex', flexDirection: 'column', marginTop: 20, marginBottom: 20}}
       >
         <Box style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
-          <Box style={{fontSize: 20, fontWeight: 'bold'}}>Defcon 2021</Box>
+          <Box style={{fontSize: 20, fontWeight: 'bold'}}>{props.conference.name}</Box>
           <Box style={{display: 'flex', flexDirection: 'row', fontSize: 14, marginRight: 20}}>
             <Box style={{paddingRight: 15}}>Aug 8 to Aug 11</Box>
           </Box>
