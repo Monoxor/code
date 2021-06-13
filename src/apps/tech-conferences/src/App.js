@@ -14,10 +14,10 @@ class App extends Component {
     await ConferencesStore.getConfernces()
   }
   render () {
-    let conferences = ConferencesStore.conferences
+    let conferences=ConferencesStore.conferences
     return (
       <Box 
-        style = {{
+        style={{
           display: 'flex', flexDirection: 'column', position: 'absolute', 
           minHeight: '100%', width: '100%', maxWidth: '100%', 
           backgroundColor: '#FAFAFA', minHeight: '100%'
@@ -28,12 +28,25 @@ class App extends Component {
         
         
         <Box style={{display: 'flex', flexDirection: 'row', paddingLeft: 20, paddingRight: 20}}>
-          <Box style = {{flex: 8, backgroundColor: 'lightgrey'}}>
-          <Box style={{fontSize: 32, height: 100, paddingTop: 20}}>
+          <Box style={{flex: 8}}>
+          <Box style={{fontSize: 32, paddingTop: 30, paddingBottom: 30}}>
             Upcoming Conferences
           </Box>
+          <Box id='conferences-list' style={{marginRight: 30}}>
+            <Box id='conference-card' 
+              style={{
+                display: 'flex', flexDirection: 'row', backgroundColor: 'white', borderRadius: 4,
+                height: 200
+              }}
+            >
+              <Box id='conference-img' style={{flex: 1, backgroundColor: 'lightgrey', margin: 10, borderRadius: 8}}>
+                <Box style={{padding: 75}}>Image</Box>
+              </Box>
+              <Box id='conference-summary' style={{flex: 3}}>Summary</Box>
+            </Box>
           </Box>
-          <Box style = {{flex: 5, backgroundColor: 'blue'}}>2</Box>
+          </Box>
+          <Box style={{flex: 5, backgroundColor: 'blue'}}>2</Box>
         </Box>
         {/* <Box>{ConferencesStore.count}</Box> */}
         <Box>{conferences ? conferences.page: 'No'}</Box>
