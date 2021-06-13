@@ -1,17 +1,32 @@
 import logo from './logo.svg';
 import './App.css';
 import {
-  Box, Divider
+  Box, Divider, Chip
 } from '@material-ui/core'
 import { observer } from 'mobx-react'
 import ConferencesStore from './stores/conferences.store'
 import Header from './components/Header.component'
-
+import ConferenceSummary from './components/ConferenceSummary.component'
 import React, { Component } from 'react'
+import { light } from '@material-ui/core/styles/createPalette';
 
 class App extends Component {
   async componentDidMount() {
     await ConferencesStore.getConfernces()
+  }
+
+  _renderConferencesList() {
+    let data = ConferencesStore.conferences
+    if (!data) {
+      return 
+    }
+    let conferences = []
+    data.map((conference)=>{
+      conferences.push(
+        <ConferenceSummary key={Math.random()} />
+      )
+    })
+    return conferences
   }
   render () {
     let conferences=ConferencesStore.conferences
@@ -25,32 +40,19 @@ class App extends Component {
       >
         <Header />
         <Divider />
-        
-        
         <Box style={{display: 'flex', flexDirection: 'row', paddingLeft: 20, paddingRight: 20}}>
           <Box style={{flex: 8}}>
-          <Box style={{fontSize: 32, paddingTop: 30, paddingBottom: 30}}>
-            Upcoming Conferences
-          </Box>
-          <Box id='conferences-list' style={{marginRight: 30}}>
-            <Box id='conference-card' 
-              style={{
-                display: 'flex', flexDirection: 'row', backgroundColor: 'white', borderRadius: 4,
-                height: 200
-              }}
-            >
-              <Box id='conference-img' style={{flex: 1, backgroundColor: 'lightgrey', margin: 10, borderRadius: 8}}>
-                <Box style={{padding: 75}}>Image</Box>
-              </Box>
-              <Box id='conference-summary' style={{flex: 3}}>Summary</Box>
+            <Box style={{fontSize: 32, paddingTop: 30}}>
+              Upcoming Conferences
             </Box>
-          </Box>
+            <Box id='conferences-list' style={{marginRight: 30}}>
+              {this._renderConferencesList()}
+              <ConferenceSummary />
+              <ConferenceSummary />
+            </Box>
           </Box>
           <Box style={{flex: 5, backgroundColor: 'blue'}}>2</Box>
         </Box>
-        {/* <Box>{ConferencesStore.count}</Box> */}
-        <Box>{conferences ? conferences.page: 'No'}</Box>
-        
       </Box>
     );
     

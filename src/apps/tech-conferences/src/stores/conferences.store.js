@@ -12,8 +12,7 @@ class ConferencesStore {
 
 
     async getConfernces() {
-        console.log('getConferences')
-        let response = await axios.get('https://reqres.in/api/users?page=2')
+        let response = await axios.get('https://60c6093a19aa1e001769e9f3.mockapi.io/conferences')
         if (response.status === 200) {
             runInAction(()=> this.conferences = response.data)
             
