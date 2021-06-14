@@ -3,6 +3,9 @@ import {
 } from '@material-ui/core'
 
 function ConferenceSummary(props) {
+  if (!props.conference.name) {
+    return null
+  }
   return (
     <Box id='conference-card' 
       style={{
@@ -30,7 +33,7 @@ function ConferenceSummary(props) {
           </Box>
         </Box>
         <Box style={{flex: 1, marginTop: 15, marginRight: 20, fontSize: 12, fontStyle: 'italic'}}>
-          DEFCON is the world's longest running and largest underground hacking conference. Hackers, corporate IT professionals, and three letter government agencies all converge on Las Vegas every summer to absorb cutting edge hacking research from the most brilliant minds in the world and test their skills in contests of hacking might.
+          {props.conference.desc}
         </Box>
         <Box style={{marginRight: 20, alignItems: 'space-around', }}>
           <Chip style={{marginRight: 10}} label='Security' size='small'/>
