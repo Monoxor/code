@@ -18,6 +18,7 @@ class App extends Component {
 
   _renderConferencesList() {
     let data = ConferencesStore.conferences
+    console.log(data)
     if (!data) {
       return 
     }
@@ -28,9 +29,10 @@ class App extends Component {
     //   )
     // })
     // return conferences
+      let numConferences = ConferencesStore.apiPage*5
       return (
         <InfiniteScroll
-          dataLength={ConferencesStore.offset+3}
+          dataLength={numConferences}
           next={async () => await ConferencesStore.getNextBatch()}
           hasMore={true}
           loader={<h4>Loading...</h4>}
