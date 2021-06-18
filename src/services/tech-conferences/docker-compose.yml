@@ -1,0 +1,11 @@
+version: '3'
+services:
+  tech-conferences-service:
+    build: .
+    image: tech-conferences-service
+    container_name: tech-conferences-service
+    ports:
+      - 5000:5000
+    volumes:
+      - .:/app
+    command: /bin/sleep 216000
