@@ -1,9 +1,9 @@
 version: '3'
 services:
-  tech-conferences-service:
+  tech-conferences-svc:
     build: .
-    image: tech-conferences-service
-    container_name: tech-conferences-service
+    image: tech-conferences-svc
+    container_name: tech-conferences-svc
     ports:
       - 5000:5000
     volumes:
