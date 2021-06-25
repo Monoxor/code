@@ -25,6 +25,6 @@ spec:
     spec:
       containers:
       - name: tech-conferences-svc-dev
-        image: registry.digitalocean.com/monoxor/proximity-web:c301b3c
+        image: registry.digitalocean.com/monoxor/tech-conferences-svc:3ddfd2d
         ports:
         - containerPort: 80

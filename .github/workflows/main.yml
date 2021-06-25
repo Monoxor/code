@@ -32,7 +32,7 @@ jobs:
 
       - name: Build container image
         working-directory: src/services/tech-conferences/
-        run: docker build -f Dockerfile -t registry.digitalocean.com/monoxor/tech-conferences-svc:$(echo $GITHUB_SHA | head -c7) .
+        run: docker build -t registry.digitalocean.com/monoxor/tech-conferences-svc:$(echo $GITHUB_SHA | head -c7) .
 
       - name: Install doctl
         uses: digitalocean/action-doctl@v2
@@ -44,3 +44,4 @@ jobs:
 
       - name: Push image to DigitalOcean Container Registry
         run: docker push registry.digitalocean.com/monoxor/tech-conferences-svc:$(echo $GITHUB_SHA | head -c7)
+        run: docker push registry.digitalocean.com/monoxor/tech-conferences-svc:latest
