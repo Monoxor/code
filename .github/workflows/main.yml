@@ -31,7 +31,8 @@ jobs:
         run: echo Hello, world!
 
       - name: Build container image
-        run: docker build -f src/services/tech-conferences/Dockerfile -t registry.digitalocean.com/monoxor/tech-conferences-svc:$(echo $GITHUB_SHA | head -c7) .
+        working-directory: src/services/tech-conferences/
+        run: docker build -f Dockerfile -t registry.digitalocean.com/monoxor/tech-conferences-svc:$(echo $GITHUB_SHA | head -c7) .
 
       - name: Install doctl
         uses: digitalocean/action-doctl@v2
