@@ -2,6 +2,7 @@
 from flask import Flask
 import psycopg2
 import json
+import dateutil.parser as parser
 
 app = Flask(__name__)
 
@@ -20,14 +21,26 @@ def getTechConferences():
     ) 
     cur = conn.cursor()
     cur.execute(
-        '''SELECT id, name, description, link, img_link FROM conferences'''
+        '''SELECT id, name, description, link, img_link, start_date, end_date FROM conferences'''
     )
     rows = cur.fetchall()
     conferences = []
     for row in rows:
-        print (row)
+        print (type(row[6]))
+        conferences.append(
+            {
+                'uuid': row[0],
+                'name': row[1],
+                'description': row[2],
+                'link': row[3],
+                'img_link': row[4],
+                'start_date': parser.parse(str(row[5])).isoformat(),
+                'end_date': parser.parse(str(row[6])).isoformat()
+            }
+        )
     # print (conn)
-    return json.dumps(rows)
+    print (conferences)
+    return {"data": conferences}
     return "Tech Conferences List"
 
 if __name__ == '__main__':
