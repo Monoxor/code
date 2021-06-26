@@ -5,7 +5,7 @@ metadata:
 spec:
   ports:
   - port: 80
-    targetPort: 80
+    targetPort: 5000
   selector:
     app: tech-conferences-svc-dev
 ---
@@ -25,6 +25,6 @@ spec:
     spec:
       containers:
       - name: tech-conferences-svc-dev
-        image: registry.digitalocean.com/monoxor/tech-conferences-svc@sha256:61b5ad90878843930fa8ebf00ec0f92b238f79f614cdaa9db6e1932a02409127
+        image: registry.digitalocean.com/monoxor/tech-conferences-svc@sha256:cde2e94eb29e9fea7aff2cc661f05f4dfd11dc6007a08fe9b07f00db3a8660e5
         ports:
-        - containerPort: 80
+        - containerPort: 5000
