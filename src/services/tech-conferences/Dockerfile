@@ -5,4 +5,4 @@ WORKDIR /app
 RUN ls -al
 RUN pip3 install -r requirements.txt
 # ENTRYPOINT ["python3", "app.py"]
-ENTRYPOINT [ "/bin/sleep", 216000 ]
+ENTRYPOINT [ "/bin/sleep", "216000" ]
