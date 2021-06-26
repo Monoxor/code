@@ -30,6 +30,10 @@ jobs:
       - name: Run a one-line script
         run: echo Hello, world!
 
+      - name: list files in current dir
+        working-directory: src/services/tech-conferences/
+        run: ls -al
+
       - name: Build container image
         working-directory: src/services/tech-conferences/
         run: docker build -t registry.digitalocean.com/monoxor/tech-conferences-svc:$(echo $GITHUB_SHA | head -c7) .
