@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: proximity-web
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: proximity-web
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: proximity-web
+spec:
+  selector:
+    matchLabels:
+      app: proximity-web
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: proximity-web
+    spec:
+      containers:
+      - name: proximity-web
+        image: registry.digitalocean.com/monoxor/proximity-web
+        ports:
+        - containerPort: 80

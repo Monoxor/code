@@ -1,0 +1,82 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: platform-ingress
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  tls:
+  - hosts:
+    - dev.monoxor.com
+    secretName: platform-tls
+  rules:
+  - host: dev.monoxor.com
+    http:
+      paths:
+      - path: /echo-alpha
+        backend:
+          serviceName: echo-alpha
+          servicePort: 80 
+  - host: dev.monoxor.com
+    http:
+      paths:
+      - path: /data-services
+        backend:
+          serviceName: data-services-dev
+          servicePort: 80
+  - host: dev.monoxor.com
+    http:
+      paths:
+      - path: /workflow-services
+        backend:
+          serviceName: workflow-services-dev
+          servicePort: 80
+  - host: dev.monoxor.com
+    http:
+      paths:
+      - path: /proximity
+        backend:
+          serviceName: proximity-web-dev
+          servicePort: 80
+  - host: dev.monoxor.com
+    http:
+      paths:
+      - path: /ewallet
+        backend:
+          serviceName: ewallet-web-dev
+          servicePort: 80
+  - host: dev.monoxor.com
+    http:
+      paths:
+      - path: /nocode
+        backend:
+          serviceName: nocode-web-dev
+          servicePort: 80
+  - host: dev.monoxor.com
+    http:
+      paths:
+      - path: /proximity-dp/ewallet/company
+        backend:
+          serviceName: proximity-vs-ewallet-company-dev
+          servicePort: 80
+  - host: dev.monoxor.com
+    http:
+      paths:
+      - path: /proximity-dp/ewallet/wallet/search
+        backend:
+          serviceName: proximity-vs-ewallet-wallet-dev
+          servicePort: 80
+  - host: dev.monoxor.com
+    http:
+      paths:
+      - path: /proximity-dp/ewallet/user/search
+        backend:
+          serviceName: proximity-vs-ewallet-user-dev
+          servicePort: 80
+  - host: dev.monoxor.com
+    http:
+      paths:
+      - path: /proximity-dp/ewallet/transaction/search
+        backend:
+          serviceName: proximity-vs-ewallet-transaction-dev
+          servicePort: 80

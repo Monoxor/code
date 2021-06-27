@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: apis
+spec:
+  ports:
+  - port: 80
+    targetPort: 8080
+  selector:
+    app: apis
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apis
+spec:
+  selector:
+    matchLabels:
+      app: apis
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: apis
+    spec:
+      containers:
+      - name: apis
+        image: registry.digitalocean.com/monoxor/apis
+        ports:
+        - containerPort: 8080

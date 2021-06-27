@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: platform-ingress-dev
+  namespace: mxr-dev
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  tls:
+  - hosts:
+    - platform.monoxor.com
+    secretName: platform-tls
+  rules:
+  - host: platform.monoxor.com
+    http:
+      paths:
+      - path: /dev/echo-alpha
+        backend:
+          serviceName: echo-alpha
+          servicePort: 80
+  - host: platform.monoxor.com
+    http:
+      paths:
+      - path: /dev/data-services
+        backend:
+          serviceName: echo-alpha
+          servicePort: 80

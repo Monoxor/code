@@ -1,0 +1,48 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: data-services-dev
+spec:
+  ports:
+  - port: 80
+    targetPort: 8080
+  selector:
+    app: data-services-dev
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: data-services-dev
+spec:
+  selector:
+    matchLabels:
+      app: data-services-dev
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: data-services-dev
+    spec:
+      containers:
+      - name: data-services
+        image: registry.digitalocean.com/monoxor/data-services:dev
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        env:
+          - name: DB_HOST
+            value: "mxr-postgres-sfo-1-do-user-6132079-0.b.db.ondigitalocean.com"
+          - name: DB_USER
+            value: "doadmin"
+          - name: DB_PASS
+            value: "irjd0fs5okruoanr"
+          - name: DB_NAME
+            value: "defaultdb"
+          - name: DB_PORT
+            value: "25060"
+          - name: DB_TYPE
+            value: "postgres"
+          - name: DB_SSL
+            value: "true"
+          - name: DB_SSL_CA
+            value: "db-ca-cert.crt"

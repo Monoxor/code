@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ewallet-web-dev
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: ewallet-web-dev
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ewallet-web-dev
+spec:
+  selector:
+    matchLabels:
+      app: ewallet-web-dev
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: ewallet-web-dev
+    spec:
+      containers:
+      - name: ewallet-web-dev
+        image: registry.digitalocean.com/monoxor/ewallet-web:dev
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80

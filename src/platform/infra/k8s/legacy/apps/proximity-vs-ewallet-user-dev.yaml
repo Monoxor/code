@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: proximity-vs-ewallet-user-dev
+spec:
+  ports:
+  - port: 80
+    targetPort: 5005
+  selector:
+    app: proximity-vs-ewallet-user-dev
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: proximity-vs-ewallet-user-dev
+spec:
+  selector:
+    matchLabels:
+      app: proximity-vs-ewallet-user-dev
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: proximity-vs-ewallet-user-dev
+    spec:
+      containers:
+      - name: proximity-vs-ewallet-user-dev
+        image: registry.digitalocean.com/monoxor/proximity-dp-es:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5005
+        env:
+          - name: TOKEN_SECRET
+            value: "automatestuff"
+          - name: VIRTUAL_SERVICE_ID
+            value: "572a29e1-d4d0-4b83-adfc-7eab8dac867f"
+          - name: DATA_SERVICES_URL
+            value: "https://dev.monoxor.com/data-services/crud/k8ti/proximity"

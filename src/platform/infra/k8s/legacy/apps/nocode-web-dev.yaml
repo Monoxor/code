@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nocode-web-dev
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: nocode-web-dev
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nocode-web-dev
+spec:
+  selector:
+    matchLabels:
+      app: nocode-web-dev
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: nocode-web-dev
+    spec:
+      containers:
+      - name: nocode-web-dev
+        image: registry.digitalocean.com/monoxor/nocode-web:dev
+        ports:
+        - containerPort: 80

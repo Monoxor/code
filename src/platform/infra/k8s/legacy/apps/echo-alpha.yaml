@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: echo-alpha
+spec:
+  ports:
+  - port: 80
+    targetPort: 5678
+  selector:
+    app: echo-alpha
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: echo-alpha
+spec:
+  selector:
+    matchLabels:
+      app: echo-alpha
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: echo-alpha
+    spec:
+      containers:
+      - name: echo-alpha
+        image: hashicorp/http-echo
+        args:
+        - "-text=deployed by kushal"
+        ports:
+        - containerPort: 5678

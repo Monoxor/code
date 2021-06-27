@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: echo-beta
+spec:
+  ports:
+  - port: 80
+    targetPort: 5678
+  selector:
+    app: echo-beta
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: echo-beta
+spec:
+  selector:
+    matchLabels:
+      app: echo-beta
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: echo-beta
+    spec:
+      containers:
+      - name: echo-beta
+        image: hashicorp/http-echo
+        args:
+        - "-text=echo-beta demo deployment"
+        ports:
+        - containerPort: 5678
