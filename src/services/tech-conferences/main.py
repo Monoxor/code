@@ -4,9 +4,12 @@ from flask_cors import CORS
 import psycopg2
 import json
 import dateutil.parser as parser
+import feedparser
+
 
 app = Flask(__name__)
-cors = CORS(app, resources={r"/*": {"origins": "*"}}
+CORS(app, resources={r"/*": {"origins": "*"}})
+
 @app.route('/')
 def index():
     return "Hello, World!"
@@ -43,6 +46,12 @@ def getTechConferences():
     print (conferences)
     return {"data": conferences}
     return "Tech Conferences List"
+
+@app.route('/tech-conferences/feed')
+def getFeed():
+    feed = feedparser.parse('https://www.techrepublic.com/rssfeeds/articles')
+    print (feed)
+    return feed
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)

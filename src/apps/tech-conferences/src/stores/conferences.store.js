@@ -28,7 +28,8 @@ class ConferencesStore {
 
     async getNextBatch() {
         let response = await axios.get(
-            `https://v1.nocodeapi.com/monoxor/google_sheets/KBzOroxMnqRqplyw?tabId=Sheet1&perPage=5&page=${this.apiPage}`
+            // `https://v1.nocodeapi.com/monoxor/google_sheets/KBzOroxMnqRqplyw?tabId=Sheet1&perPage=5&page=${this.apiPage}`
+            `https://tech-conferences.org/tech-conferences/conferences`
         )
         if (response.status === 200) {
             this.apiPage = this.apiPage + 1

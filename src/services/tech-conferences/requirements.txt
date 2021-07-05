@@ -1,6 +1,8 @@
+feedparser
 flask
-flask-cors
-requests
 Flask-API
+flask-cors
 psycopg2
 python-dateutil
+requests
+
