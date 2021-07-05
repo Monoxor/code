@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: proximity-vs-tiredful-api-demo-1
+spec:
+  ports:
+    - port: 80
+      targetPort: 5005
+  selector:
+    app: proximity-vs-tiredful-api-demo-1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: proximity-vs-tiredful-api-demo-1
+spec:
+  selector:
+    matchLabels:
+      app: proximity-vs-tiredful-api-demo-1
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: proximity-vs-tiredful-api-demo-1
+    spec:
+      containers:
+        - name: proximity-vs-tiredful-api-demo-1
+          image: 'registry.digitalocean.com/monoxor/proximity-dp-es:latest'
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5005
+          env:
+            - name: TOKEN_SECRET
+              value: YOUR_TOKEN
+            - name: VIRTUAL_SERVICE_ID
+              value: 917e82d1-b5c8-4bf7-afa7-a534b1102ac0
+            - name: DATA_SERVICES_URL
+              value: 'https://dev.monoxor.com/data-services/crud/k8ti/proximity'
