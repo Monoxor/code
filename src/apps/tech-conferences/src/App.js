@@ -5,6 +5,7 @@ import {
 } from '@material-ui/core'
 import { observer } from 'mobx-react'
 import ConferencesStore from './stores/conferences.store'
+import FeedsStore from './stores/feeds.store'
 import Header from './components/Header.component'
 import ConferenceSummary from './components/ConferenceSummary.component'
 import React, { Component } from 'react'
@@ -14,34 +15,29 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 class App extends Component {
   async componentDidMount() {
     await ConferencesStore.getNextBatch()
+    await FeedsStore.getFeeds()
   }
 
   _renderConferencesList() {
     let data = ConferencesStore.conferences
-    console.log(data)
     if (!data) {
       return 
     }
-    // let conferences = []
-    // data.map((conference)=>{
-    //   conferences.push(
-    //     <ConferenceSummary key={Math.random()} conference={conference} />
-    //   )
-    // })
-    // return conferences
-      let numConferences = ConferencesStore.apiPage*5
-      return (
-        <InfiniteScroll
-          dataLength={numConferences}
-          next={async () => await ConferencesStore.getNextBatch()}
-          hasMore={true}
-          loader={<h4>Loading...</h4>}
-        >
-          {data.map((conference) => (
-            <ConferenceSummary key={Math.random()} conference={conference} />
-          ))}
-        </InfiniteScroll>
-      )
+    let feeds = FeedsStore.feed
+    console.log(feeds)
+    let numConferences = ConferencesStore.apiPage*5
+    return (
+      <InfiniteScroll
+        dataLength={numConferences}
+        next={async () => await ConferencesStore.getNextBatch()}
+        hasMore={true}
+        loader={<h4>Loading...</h4>}
+      >
+        {data.map((conference) => (
+          <ConferenceSummary key={Math.random()} conference={conference} />
+        ))}
+      </InfiniteScroll>
+    )
   }
   render () {
     let conferences=ConferencesStore.conferences

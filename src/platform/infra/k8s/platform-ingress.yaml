@@ -15,13 +15,6 @@ spec:
   - host: dev.monoxor.com
     http:
       paths:
-      - path: /echo-alpha
-        backend:
-          serviceName: echo-alpha
-          servicePort: 80 
-  - host: dev.monoxor.com
-    http:
-      paths:
       - path: /data-services
         backend:
           serviceName: data-services-dev

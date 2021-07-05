@@ -14,7 +14,7 @@ function Header() {
       <Box 
         style = {{marginLeft: 20, fontSize: 18, fontWeight: 'bold'}}
       >
-        Find Best Tech Conferences
+        tech-conferences.org
       </Box>
     </Box>
   );
