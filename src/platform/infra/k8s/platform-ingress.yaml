@@ -8,6 +8,7 @@ spec:
   tls:
   - hosts:
     - dev.monoxor.com
+    - dev.tech-conferences.org
     - tech-conferences.org
     secretName: platform-tls
   rules:
