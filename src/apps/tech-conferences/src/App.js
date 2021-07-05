@@ -10,12 +10,13 @@ import Header from './components/Header.component'
 import ConferenceSummary from './components/ConferenceSummary.component'
 import React, { Component } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component';
-
+import { Timeline } from 'react-twitter-widgets'
+import conferencesStore from './stores/conferences.store';
 
 class App extends Component {
   async componentDidMount() {
     await ConferencesStore.getNextBatch()
-    await FeedsStore.getFeeds()
+    await FeedsStore.getFeed()
   }
 
   _renderConferencesList() {
@@ -56,11 +57,23 @@ class App extends Component {
             <Box style={{fontSize: 32, paddingTop: 30}}>
               Upcoming Conferences
             </Box>
-            <Box id='conferences-list' style={{marginRight: 30}}>
+            <Box id='conferences-list' style={{marginRight: 10}}>
               {this._renderConferencesList()}
             </Box>
           </Box>
-          <Box style={{flex: 5, backgroundColor: 'blue'}}>2</Box>
+          <Box style={{flex: 4, marginTop: 87}}>
+            <Box style={{background: 'white', padding: 10, marginTop: 10, marginLeft: 20}}>
+              <Timeline
+                dataSource={{
+                  sourceType: 'profile',
+                  screenName: 'TechCrunch'
+                }}
+                options={{
+                  height: window.innerHeight
+                }}
+              />
+            </Box>
+          </Box>
         </Box>
       </Box>
     );

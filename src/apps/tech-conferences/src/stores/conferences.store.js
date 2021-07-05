@@ -1,12 +1,14 @@
 
 import { action, makeAutoObservable, runInAction } from "mobx";
 import axios from "axios";
+import FeedsStore from "./feeds.store"
 
 class ConferencesStore {
     count = 0
     conferences = []
     offset = 0
     apiPage = 1
+    height = window.innerHeight
     constructor() {
         // Call it here
         makeAutoObservable(this)
@@ -14,12 +16,10 @@ class ConferencesStore {
 
 
     async getConfernces() {
-        let response = await axios.get('https://60c6093a19aa1e001769e9f3.mockapi.io/conferences')
+        let response = await axios.get('https://tech-conferences.org/tech-conferences/conferences')
         if (response.status === 200) {
-            runInAction(()=> this.conferences = response.data)
-            
-        } else 
-        { 
+            runInAction(()=> this.conferences = response.data) 
+        } else { 
             this.conferences = null
         }
         return this.conferences
@@ -40,6 +40,7 @@ class ConferencesStore {
                 this.conferences = this.conferences.concat(nextBatch)
             }
         }
+        this.updateHeight()
     }
 
 
@@ -62,6 +63,10 @@ class ConferencesStore {
     increaseCount() {
         this.count += 1
         return this.count
+    }
+
+    updateHeight() {
+        this.height = window.innerHeight
     }
 }
 

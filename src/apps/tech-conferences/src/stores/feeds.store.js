@@ -1,6 +1,6 @@
 
 import { action, makeAutoObservable, runInAction } from "mobx";
-import Parser from "rss-parser"
+import axios from "axios";
 
 
 class FeedsStore {
@@ -12,17 +12,15 @@ class FeedsStore {
     }
 
 
-    async getFeeds() {
-        let parser = new Parser();  
-        let feed = await parser.parseURL('https://cors-anywhere.herokuapp.com/https://feeds.feedburner.com/TechCrunch/');
-        if (feed !== null) {
-            runInAction(()=> this.feed = feed)
-            
-        } else 
-        { 
+    async getFeed() {
+        let response = await axios.get(
+            `https://tech-conferences.org/tech-conferences/feed`
+        )
+        if (response.status === 200) {
+                this.feed = response.data
+        } else {
             this.feed = null
         }
-        return this.feed
     }
 }
 
