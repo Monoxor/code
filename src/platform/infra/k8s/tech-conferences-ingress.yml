@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: platform-ingress
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  tls:
+  - hosts:
+    - tech-conferences.org
+    secretName: platform-tls
+  rules:
+  - host: tech-conferences.org
+    http:
+      paths: 
+      - path: /tech-conferences
+        backend:
+          serviceName: tech-conferences-svc
+          servicePort: 80
