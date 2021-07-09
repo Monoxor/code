@@ -17,7 +17,7 @@ function ConferenceSummary(props) {
         <Box 
           style={{
             flex: 1, borderRadius: 8, width: 140, height: 160,
-            backgroundImage: `url('https://media.istockphoto.com/photos/symbols-picture-id672983146')`,
+            backgroundImage: `url(${props.conference.img_link})`,
             backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat',
           }}
         > 
@@ -33,7 +33,7 @@ function ConferenceSummary(props) {
           </Box>
         </Box>
         <Box style={{flex: 1, marginTop: 15, marginRight: 20, fontSize: 12, fontStyle: 'italic'}}>
-          {props.conference.desc}
+          {props.conference.description}
         </Box>
         <Box style={{marginRight: 20, alignItems: 'space-around', }}>
           <Chip style={{marginRight: 10}} label='Security' size='small'/>
