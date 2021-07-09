@@ -1,5 +1,5 @@
 #!flask/bin/python
-from flask import Flask
+from flask import Flask, request
 from flask_cors import CORS            
 import psycopg2
 import json
@@ -16,6 +16,11 @@ def index():
 
 @app.route('/tech-conferences/conferences')
 def getTechConferences():
+    page_num = int(request.args.get('page_num'))
+    offset = 20*(page_num-1)
+    limit = 20
+    total_rows_count = 0
+    next_page_exists = False
     conn = psycopg2.connect(
         database = "tech-conferences", 
         user = "dbadmin", 
@@ -25,12 +30,19 @@ def getTechConferences():
     ) 
     cur = conn.cursor()
     cur.execute(
-        '''SELECT id, name, description, link, img_link, start_date, end_date FROM conferences'''
+        '''
+            SELECT id, name, description, link, img_link, start_date, end_date,
+            COUNT(*) OVER() AS total_count
+            FROM conferences 
+            LIMIT {} 
+            OFFSET {}
+        '''.format(limit, offset)
     )
     rows = cur.fetchall()
+    fetched_rows_count = len(rows)
     conferences = []
     for row in rows:
-        print (type(row[6]))
+        total_rows_count = row[7]
         conferences.append(
             {
                 'uuid': row[0],
@@ -42,9 +54,14 @@ def getTechConferences():
                 'end_date': parser.parse(str(row[6])).isoformat()
             }
         )
-    # print (conn)
-    print (conferences)
-    return {"data": conferences}
+    if (offset + fetched_rows_count < total_rows_count):
+        next_page_exists = True
+    return {
+        "pagination": {
+            "next_page_exists": next_page_exists
+        },
+        "data": conferences
+    }
     return "Tech Conferences List"
 
 @app.route('/tech-conferences/feed')
