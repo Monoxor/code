@@ -1,5 +1,5 @@
 #!flask/bin/python
-from flask import Flask, request
+from flask import Flask, request, make_response
 from flask_cors import CORS            
 import psycopg2
 import json
@@ -10,12 +10,26 @@ import feedparser
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
 
+def _build_cors_prelight_response():
+    response = make_response()
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    response.headers.add('Access-Control-Allow-Headers', "*")
+    response.headers.add('Access-Control-Allow-Methods', "*")
+    return response
+
+
+def _corsify_actual_response(response):
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    return response
+
+
 @app.route('/')
 def index():
     return "Hello, World!"
 
 @app.route('/tech-conferences/conferences')
 def getTechConferences():
+    
     page_num = int(request.args.get('page_num'))
     offset = 20*(page_num-1)
     limit = 20
@@ -68,7 +82,7 @@ def getTechConferences():
 def getFeed():
     feed = feedparser.parse('https://www.techrepublic.com/rssfeeds/articles')
     print (feed)
-    return feed
+    return _corsify_actual_response(feed)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
