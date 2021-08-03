@@ -29,7 +29,7 @@ def index():
 
 @app.route('/tech-conferences/conferences')
 def getTechConferences():
-    
+    print (request.args.get('page_num'))
     page_num = int(request.args.get('page_num'))
     offset = 20*(page_num-1)
     limit = 20

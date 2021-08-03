@@ -13,16 +13,16 @@ function ConferenceSummary(props) {
         height: 200, marginTop: 30
       }}
     >
-      <Box id='conference-img' style={{display: 'flex', flex: 1, backgroundColor: 'lightgrey', margin: 20, borderRadius: 8}}>
-        {/* <Box 
+      {/* <Box id='conference-img' style={{display: 'flex', flex: 1, backgroundColor: 'lightgrey', margin: 20, borderRadius: 8}}>
+        <Box 
           style={{
             flex: 1, borderRadius: 8, width: 140, height: 160,
             backgroundImage: `url(${props.conference.img_link})`,
             backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat',
           }}
         > 
-        </Box> */}
-      </Box>
+        </Box>
+      </Box> */}
       <Box id='conference-summary' 
         style={{flex: 3, display: 'flex', flexDirection: 'column', marginTop: 20, marginBottom: 20}}
       >

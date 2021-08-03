@@ -25,7 +25,6 @@ class App extends Component {
       return 
     }
     let feeds = FeedsStore.feed
-    console.log(feeds)
     let numConferences = ConferencesStore.apiPage*5
     return (
       <InfiniteScroll
