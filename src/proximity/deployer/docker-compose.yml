@@ -1,0 +1,11 @@
+version: '3'
+services:
+  proximity-deployer:
+    build: .
+    image: proximity-deployer
+    container_name: proximity-deployer
+    ports:
+      - 5000:5000
+    volumes:
+      - ./:/app
+    # command: /bin/sleep 216000
