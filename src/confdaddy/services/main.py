@@ -27,7 +27,7 @@ def _corsify_actual_response(response):
 def index():
     return "Hello, World!"
 
-@app.route('/tech-conferences/conferences')
+@app.route('/service/confdaddy/conferences')
 def getTechConferences():
     print (request.args.get('page_num'))
     page_num = int(request.args.get('page_num'))

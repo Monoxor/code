@@ -4,45 +4,111 @@ metadata:
   name: platform-ingress
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    nginx.ingress.kubernetes.io/enable-cors: "true"
 spec:
   tls:
   - hosts:
-    - platform.monoxor.com
-    - eatio.app
+    - dev.monoxor.com
+    - dev.tech-conferences.org
+    - tech-conferences.org
+    - confdaddy.com
     secretName: platform-tls
   rules:
-  - host: eatio.app
-    http:
-      paths:
-      - path: /echo1
-        backend:
-          serviceName: echo2
-          servicePort: 80
-  - host: platform.monoxor.com
-    http:
-      paths:
-      - path: /echo2
-        backend:
-          serviceName: echo2
-          servicePort: 80
-  - host: platform.monoxor.com
-    http:
-      paths:
-      - path: /nocode
-        backend:
-          serviceName: nocode 
-          servicePort: 80
-  - host: platform.monoxor.com
+  - host: dev.monoxor.com
     http:
       paths:
       - path: /data-services
         backend:
-          serviceName: data-services 
+          serviceName: data-services-dev
           servicePort: 80
-  - host: platform.monoxor.com
+  - host: dev.monoxor.com
+    http:
+      paths:
+      - path: /workflow-services
+        backend:
+          serviceName: workflow-services-dev
+          servicePort: 80
+  - host: dev.monoxor.com
     http:
       paths:
       - path: /proximity
         backend:
-          serviceName: proximity-web
+          serviceName: proximity-web-dev
+          servicePort: 80
+  - host: dev.monoxor.com
+    http:
+      paths:
+      - path: /ewallet
+        backend:
+          serviceName: ewallet-web-dev
+          servicePort: 80
+  - host: dev.monoxor.com
+    http:
+      paths:
+      - path: /nocode
+        backend:
+          serviceName: nocode-web-dev
+          servicePort: 80
+  - host: dev.monoxor.com
+    http:
+      paths:
+      - path: /proximity-dp/ewallet/company
+        backend:
+          serviceName: proximity-vs-ewallet-company-dev
+          servicePort: 80
+  - host: dev.monoxor.com
+    http:
+      paths:
+      - path: /proximity-dp/ewallet/wallet/search
+        backend:
+          serviceName: proximity-vs-ewallet-wallet-dev
+          servicePort: 80
+  - host: dev.monoxor.com
+    http:
+      paths:
+      - path: /proximity-dp/ewallet/user/search
+        backend:
+          serviceName: proximity-vs-ewallet-user-dev
+          servicePort: 80
+  - host: dev.monoxor.com
+    http:
+      paths:
+      - path: /proximity-dp/ewallet/transaction/search
+        backend:
+          serviceName: proximity-vs-ewallet-transaction-dev
+          servicePort: 80
+  - host: tech-conferences.org
+    http:
+      paths: 
+      - path: /tech-conferences
+        backend:
+          serviceName: tech-conferences-svc
+          servicePort: 80
+  - host: platform.monoxor.com
+    http:
+      paths: 
+      - path: /tech-conferences
+        backend:
+          serviceName: tech-conferences-svc
+          servicePort: 80
+  - host: confdaddy.com
+    http:
+      paths: 
+      - path: /tech-conferences
+        backend:
+          serviceName: tech-conferences-svc
+          servicePort: 80
+  - host: dev.monoxor.com
+    http:
+      paths:
+      - path: /api/v1
+        backend: 
+          serviceName: tiredful-api-dev
+          servicePort: 80
+  - host: dev.monoxor.com
+    http:
+      paths:
+      - path: /proximity/demo-1
+        backend:
+          serviceName: proximity-vs-tiredful-api-demo-1
           servicePort: 80
