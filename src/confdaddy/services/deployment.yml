@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: tech-conferences-svc
+spec:
+  ports:
+  - port: 80
+    targetPort: 5000
+  selector:
+    app: tech-conferences-svc
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tech-conferences-svc
+spec:
+  selector:
+    matchLabels:
+      app: tech-conferences-svc
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: tech-conferences-svc
+    spec:
+      containers:
+      - name: tech-conferences-svc
+        image: registry.digitalocean.com/monoxor/tech-conferences-svc:90d6519
+        ports:
+        - containerPort: 5000
