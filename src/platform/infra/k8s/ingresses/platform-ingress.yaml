@@ -11,6 +11,7 @@ spec:
     - dev.monoxor.com
     - dev.tech-conferences.org
     - tech-conferences.org
+    - confdaddy.com
     secretName: platform-tls
   rules:
   - host: dev.monoxor.com
@@ -77,6 +78,20 @@ spec:
           serviceName: proximity-vs-ewallet-transaction-dev
           servicePort: 80
   - host: tech-conferences.org
+    http:
+      paths: 
+      - path: /tech-conferences
+        backend:
+          serviceName: tech-conferences-svc
+          servicePort: 80
+  - host: platform.monoxor.com
+    http:
+      paths: 
+      - path: /tech-conferences
+        backend:
+          serviceName: tech-conferences-svc
+          servicePort: 80
+  - host: confdaddy.com
     http:
       paths: 
       - path: /tech-conferences
