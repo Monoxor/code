@@ -1,7 +1,8 @@
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  name: platform-ingress
+  name: platform-ingress-dev
+  namespace: platform-dev
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
     nginx.ingress.kubernetes.io/enable-cors: "true"
@@ -9,8 +10,6 @@ spec:
   tls:
   - hosts:
     - dev.monoxor.com
-    - platfrom.monoxor.com
-    - confdaddy.com
     secretName: platform-tls
   rules:
   - host: dev.monoxor.com
@@ -75,13 +74,6 @@ spec:
       - path: /proximity-dp/ewallet/transaction/search
         backend:
           serviceName: proximity-vs-ewallet-transaction-dev
-          servicePort: 80
-  - host: platform.monoxor.com
-    http:
-      paths: 
-      - path: /service/confdaddy/conferences
-        backend:
-          serviceName: tech-conferences-svc
           servicePort: 80
   - host: dev.monoxor.com
     http:

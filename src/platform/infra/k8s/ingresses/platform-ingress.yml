@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: platform-ingress
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  tls:
+  - hosts:
+    - platform.monoxor.com
+    - prod.monoxor.com
+    secretName: letsencrypt-prod
+  rules:
+  - host: prod.monoxor.com
+    http:
+      paths:
+      - backend:
+          serviceName: echo1
+          servicePort: 80
+  - host: platform.monoxor.com
+    http:
+      paths:
+      - backend:
+          serviceName: echo2
+          servicePort: 80
