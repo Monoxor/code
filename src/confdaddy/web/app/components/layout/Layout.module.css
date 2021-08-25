@@ -1,14 +1,14 @@
 .main {
-    margin: 3rem auto;
-    /* width: 90%; */
-    /* max-width: 40rem; */
+    margin: 10px;
   }
 
   .header {
-    background-color: 'red';
-    color: #dd179b;
+    align-items: center;
+    display: flex;
+    height: 60;
   }
 
-  .header1 {
-    background-color: 'red';
+  .header_title {
+    font-size: 18;
+    font-weight: bold;
   }

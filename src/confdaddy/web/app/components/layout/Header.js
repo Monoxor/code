@@ -6,18 +6,14 @@ import classes from './Layout.module.css'
 function Header(props) {
   return (
     <Box 
-      style={{
-        display: 'flex',
-        height: 60, 
-        alignItems: 'center',
-      }}
+      className = {classes.header}
     >
       <Box 
-        // style = {{marginLeft: 20, fontSize: 18, fontWeight: 'bold'}}
-        className = {classes.header}
+        className = {classes.header_title}
       >
         ConfDaddy
       </Box>
+      <Divider />
     </Box>
   );
 }
