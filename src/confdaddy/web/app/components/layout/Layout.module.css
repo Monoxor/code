@@ -3,3 +3,12 @@
     /* width: 90%; */
     /* max-width: 40rem; */
   }
+
+  .header {
+    background-color: 'red';
+    color: #dd179b;
+  }
+
+  .header1 {
+    background-color: 'red';
+  }
