@@ -1,11 +1,12 @@
 .main {
-    margin: 10px;
+    background-color: #FAFAFA;
   }
 
   .header {
     align-items: center;
     display: flex;
     height: 60;
+    margin: 10px;
   }
 
   .header_title {
