@@ -1,8 +1,10 @@
 import {
   Box
 } from '@material-ui/core'
-import ConfSummary from './ConfSummary'
+import { useEffect, useState } from "react";
 import InfiniteScroll from 'react-infinite-scroll-component';
+import ConfSummary from './ConfSummary'
+
 
 const conflist = {
   "data": [
@@ -89,16 +91,45 @@ const conflist = {
     }
   ]
 }
+const API_URL = 'https://confdaddy-conferences-service-9huv4.ondigitalocean.app/service/confdaddy/conferences'
+let PAGE_NUM = 1
+
+
+
+
+
+export async function getServerSideProps() {
+  
+  
+  const res = await fetch(`${API_URL}?page_num=${PAGE_NUM}`);
+  const data = await res.json();
+
+  return {
+    props: {
+      data,
+      numberOfPosts: 4,
+    },
+  };
+}
+
 
 function ConfList() {
+  const [conferences, setConferences] = useState(conflist.data);
+  const getMoreConferences = async () => {
+    const res = await fetch(
+      `${API_URL}?page_num=${PAGE_NUM}`
+    );
+    let newConferences = await res.json()
+    setConferences((conferences) => [...conferences, ...newConferences.data]);
+  };
   return (
     <InfiniteScroll
       dataLength={10}
-      next={async () => console.log('get more conferences')}
+      next={getMoreConferences}
       hasMore={true}
       loader={<h4>Loading...</h4>}
     >
-      {conflist.data.map((conference) => (
+      {conferences.map((conference) => (
         <ConfSummary key={Math.random()} conference={conference} />
       ))}
     </InfiniteScroll>

@@ -1,6 +1,0 @@
-.line_clamp {
-    background-color: red;
-    text-overflow: ellipsis;
-    /* white-space: nowrap; */
-    overflow: hidden;
-  }

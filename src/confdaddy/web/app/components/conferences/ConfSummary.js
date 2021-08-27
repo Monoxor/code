@@ -5,6 +5,7 @@ import {
 import classes from './Conf.module.css'
 
 
+
 function ConfSummary(props) {
   if (!props.conference.name) {
     return null
