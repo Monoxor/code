@@ -1,7 +1,7 @@
 
 # This is a basic workflow to help you get started with Actions
 
-name: Push tech-conferences image to mxr registry.digitalocean.com
+name: Push confdaddy service to digitalocean registry
 
 # Controls when the action will run. 
 on:
@@ -26,17 +26,9 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      - name: list files in current dir
-        working-directory: src/services/tech-conferences/
-        run: ls -al
-
       - name: Build container image
-        working-directory: src/services/tech-conferences/
-        run: docker build -t registry.digitalocean.com/monoxor/tech-conferences-svc:$(echo $GITHUB_SHA | head -c7) .
+        working-directory: src/confdaddy/services
+        run: docker build -t registry.digitalocean.com/monoxor/condaddy-services:$(echo $GITHUB_SHA | head -c7) .
 
       - name: Install doctl
         uses: digitalocean/action-doctl@v2
@@ -47,5 +39,5 @@ jobs:
         run: doctl registry login --expiry-seconds 600
 
       - name: Push image to DigitalOcean Container Registry
-        run: docker push registry.digitalocean.com/monoxor/tech-conferences-svc:$(echo $GITHUB_SHA | head -c7)
+        run: docker push registry.digitalocean.com/monoxor/confdadd-service:$(echo $GITHUB_SHA | head -c7)
         # run: docker push registry.digitalocean.com/monoxor/tech-conferences-svc:latest
