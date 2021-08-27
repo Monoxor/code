@@ -1,0 +1,8 @@
+feedparser
+flask
+Flask-API
+flask-cors
+psycopg2
+python-dateutil
+requests
+

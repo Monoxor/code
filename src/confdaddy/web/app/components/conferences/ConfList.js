@@ -91,7 +91,7 @@ const conflist = {
     }
   ]
 }
-const API_URL = 'https://confdaddy-conferences-service-9huv4.ondigitalocean.app/service/confdaddy/conferences'
+const API_URL = 'https://confdaddy-services-i7cau.ondigitalocean.app/service/confdaddy/conferences'
 let PAGE_NUM = 1
 
 
@@ -107,7 +107,7 @@ export async function getServerSideProps() {
   return {
     props: {
       data,
-      numberOfPosts: 4,
+      numberOfPosts: 5,
     },
   };
 }
@@ -124,7 +124,7 @@ function ConfList() {
   };
   return (
     <InfiniteScroll
-      dataLength={10}
+      dataLength={5}
       next={getMoreConferences}
       hasMore={true}
       loader={<h4>Loading...</h4>}
