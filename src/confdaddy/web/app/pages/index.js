@@ -23,15 +23,32 @@ function _renderTwitterFeeds () {
 }
 
 
-export default function Home() {
+export default function Home({data, pagination}) {
   return (
     <Box style={{display: 'flex', flexDirection: 'row', marginLeft: 10}}>
       <Box style={{flex: 8}}>
-        <ConfList />
+        <ConfList data={data} pagination={pagination}/>
       </Box>
       <Box style={{flex: 4}}>
         {_renderTwitterFeeds()}
       </Box>
     </Box>
   )
+}
+
+
+export async function getServerSideProps() {
+  const API_URL = 'https://confdaddy-services-i7cau.ondigitalocean.app/service/confdaddy/conferences?page_num=1'
+  const res = await fetch(API_URL)
+  let data = await res.json()
+  let pagination = data.pagination
+  pagination['page_num'] = 1
+  data = data.data
+
+  return {
+      props: {
+          data: data,
+          pagination
+      }
+  }
 }
