@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "conferences",
+  "info": {
+    "name": "conferences",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "desc": {
+      "type": "text"
+    }
+  }
+}

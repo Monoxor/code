@@ -42,7 +42,7 @@ export async function getServerSideProps() {
   const res = await fetch(API_URL)
   let data = await res.json()
   let pagination = data.pagination
-  pagination['page_num'] = 1
+  pagination['page_num'] = 2
   data = data.data
 
   return {
