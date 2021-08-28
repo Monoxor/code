@@ -1,5 +1,3 @@
-import Head from 'next/head'
-import Image from 'next/image'
 import {
   Box
 } from '@material-ui/core'
@@ -44,7 +42,6 @@ export async function getServerSideProps() {
   let pagination = data.pagination
   pagination['page_num'] = 2
   data = data.data
-
   return {
       props: {
           data: data,
