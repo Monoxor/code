@@ -1,0 +1,16 @@
+version: '3'
+services:
+  confdaddy-web:
+    build:
+      context: ./
+      dockerfile: Dockerfile.dev
+    image: confdaddy-web
+    container_name: confdaddy-web
+    ports:
+      - 3000:3000
+      - 80:80
+    volumes:
+      - ./:/app
+    environment:
+      - NODE_TLS_REJECT_UNAUTHORIZED=0
+    command: /bin/sleep 216000
