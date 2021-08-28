@@ -28,7 +28,7 @@ jobs:
 
       - name: Build container image
         working-directory: src/confdaddy/services
-        run: docker build -t registry.digitalocean.com/monoxor/condaddy-services:$(echo $GITHUB_SHA | head -c7) .
+        run: docker build -t registry.digitalocean.com/monoxor/confdaddy-services:$(echo $GITHUB_SHA | head -c7) .
 
       - name: Install doctl
         uses: digitalocean/action-doctl@v2
@@ -39,5 +39,5 @@ jobs:
         run: doctl registry login --expiry-seconds 600
 
       - name: Push image to DigitalOcean Container Registry
-        run: docker push registry.digitalocean.com/monoxor/confdaddy-service:$(echo $GITHUB_SHA | head -c7)
+        run: docker push registry.digitalocean.com/monoxor/confdaddy-services:$(echo $GITHUB_SHA | head -c7)
         # run: docker push registry.digitalocean.com/monoxor/tech-conferences-svc:latest
