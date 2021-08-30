@@ -1,5 +1,6 @@
 import { Box } from '@material-ui/core'
 import { Timeline } from 'react-twitter-widgets'
+import MediaQuery from 'react-responsive'
 import ConfList from './../components/conferences/ConfList'
 
 function _renderTwitterFeeds () {
@@ -21,13 +22,16 @@ function _renderTwitterFeeds () {
 
 export default function Home({data, pagination}) {
   return (
-    <Box style={{display: 'flex', flexDirection: 'row', marginLeft: 10}}>
+    <Box style={{display: 'flex', flexDirection: 'row', marginLeft: 10, marginRight: 10}}>
       <Box style={{flex: 8}}>
         <ConfList data={data} pagination={pagination}/>
       </Box>
-      <Box style={{flex: 4}}>
-        {_renderTwitterFeeds()}
-      </Box>
+      <MediaQuery minWidth={680}>
+        <Box style={{flex: 4}}>
+          {_renderTwitterFeeds()}
+        </Box>
+      </MediaQuery>
+      
     </Box>
   )
 }
