@@ -11,39 +11,41 @@ function ConfSummary(props) {
     return null
   }
   return (
-    <Box id='conference-card' 
-      style={{
-        display: 'flex', flexDirection: 'row', 
-        backgroundColor: 'white', borderRadius: 4, height: 125, marginTop: 30, padding: 20
-      }}
-    >
-      <a  target='_blank' href={props.conference.link} rel='noopener noreferrer'>
-      <Box id='conference-summary' 
-        style={{flex: 3, display: 'flex', flexDirection: 'column'}}
+    <a  target='_blank' href={props.conference.link} rel='noopener noreferrer'>
+      <Box id='conference-card' 
+        style={{
+          display: 'flex', flexDirection: 'row',
+          backgroundColor: 'white', borderRadius: 4, height: 125, marginTop: 30, padding: 20
+        }}
       >
-        <Box style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
-          <Box style={{fontSize: 20, fontWeight: 'bold'}}>{props.conference.name}</Box>
-          <Box style={{
-            display: 'flex', flexDirection: 'row', 
-            fontSize: 12, fontStyle: 'italic', fontWeight: 200
-          }}>
-            <Box>
-              {moment(props.conference.start_date).format('MMM Do')} 
-              {' to '} 
-              {moment(props.conference.end_date).format('MMM Do')}
-            </Box> 
+        
+        <Box id='conference-summary' 
+          style={{flex: 3, display: 'flex', flexDirection: 'column'}}
+        >
+          <Box style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
+            <Box style={{fontSize: 20, fontWeight: 'bold'}}>{props.conference.name}</Box>
+            <Box style={{
+              display: 'flex', flexDirection: 'row', 
+              fontSize: 12, fontStyle: 'italic', fontWeight: 200
+            }}>
+              <Box>
+                {moment(props.conference.start_date).format('MMM Do')} 
+                {' to '} 
+                {moment(props.conference.end_date).format('MMM Do')}
+              </Box> 
+            </Box>
+          </Box>
+          <Box style={{flex: 1, marginTop: 15, fontSize: 12, fontStyle: 'italic'}}>
+            {props.conference.description.substring(0, 200)}... (more)
+          </Box>
+          <Box style={{marginRight: 20, marginTop: 10, alignItems: 'space-around', }}>
+            {/* <Chip style={{marginRight: 10}} label='Security' size='small'/>
+            <Chip style={{marginRight: 10}} label='Hacking' size='small'/> */}
           </Box>
         </Box>
-        <Box style={{flex: 1, marginTop: 15, fontSize: 12, fontStyle: 'italic'}}>
-          {props.conference.description.substring(0, 200)}... (more)
-        </Box>
-        <Box style={{marginRight: 20, marginTop: 10, alignItems: 'space-around', }}>
-          {/* <Chip style={{marginRight: 10}} label='Security' size='small'/>
-          <Chip style={{marginRight: 10}} label='Hacking' size='small'/> */}
-        </Box>
+        
       </Box>
-      </a>
-    </Box>
+    </a>
   );
 }
 
