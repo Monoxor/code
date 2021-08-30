@@ -4,13 +4,21 @@
 
   .header {
     align-items: center;
-    display: flex;
-    height: 60;
+    height: 50px;
     margin: 10px;
   }
 
   .header_title {
-    font-size: 18;
+    font-size: 20;
     font-weight: bold;
-    height: 50px;
+    /* height: 50px; */
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .header_summary {
+    font-size: 12px;
+    font-style: italic;
+    font-weight: 200;
+    padding-bottom: 10px;
   }

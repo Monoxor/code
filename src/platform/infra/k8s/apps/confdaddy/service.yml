@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: confdaddy-services-dev
+spec:
+  ports:
+  - port: 80
+    targetPort: 5000
+  selector:
+    app: confdaddy-services-dev
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: confdaddy-services-dev
+spec:
+  selector:
+    matchLabels:
+      app: confdaddy-services-dev
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: confdaddy-services-dev
+    spec:
+      containers:
+      - name: confdaddy-services-dev
+        image: registry.digitalocean.com/monoxor/confdaddy-services:66d7b52
+        ports:
+        - containerPort: 5000

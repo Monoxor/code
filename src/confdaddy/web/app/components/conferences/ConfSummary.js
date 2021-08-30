@@ -1,7 +1,7 @@
 import {
     Box, Chip, 
 } from '@material-ui/core'
-
+import moment from 'moment'
 import classes from './Conf.module.css'
 
 
@@ -23,7 +23,7 @@ function ConfSummary(props) {
         <Box style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
           <Box style={{fontSize: 20, fontWeight: 'bold'}}>{props.conference.name}</Box>
           <Box style={{display: 'flex', flexDirection: 'row', fontSize: 14}}>
-            <Box>Aug 8 to Aug 11</Box>
+            {/* <Box>{moment(props.conference.start_date)}</Box> */}
           </Box>
         </Box>
         <Box style={{flex: 1, marginTop: 15, fontSize: 12, fontStyle: 'italic'}}>

@@ -8,10 +8,9 @@ function Header(props) {
     <Box 
       className = {classes.header}
     >
-      <Box 
-        className = {classes.header_title}
-      >
-        ConfDaddy
+      <Box >
+        <Box className = {classes.header_title}>ConfDaddy</Box>
+        <Box className={ classes.header_summary }>Find conferences that matter to you...</Box>
       </Box>
       <Divider />
     </Box>

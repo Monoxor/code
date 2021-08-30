@@ -1,6 +1,4 @@
-import {
-  Box
-} from '@material-ui/core'
+import { Box } from '@material-ui/core'
 import { Timeline } from 'react-twitter-widgets'
 import ConfList from './../components/conferences/ConfList'
 
@@ -36,7 +34,7 @@ export default function Home({data, pagination}) {
 
 
 export async function getServerSideProps() {
-  const API_URL = 'https://confdaddy-services-i7cau.ondigitalocean.app/service/confdaddy/conferences?page_num=1'
+  const API_URL = 'https://platform.monoxor.com/service/confdaddy/conferences?page_num=1'
   const res = await fetch(API_URL)
   let data = await res.json()
   let pagination = data.pagination
