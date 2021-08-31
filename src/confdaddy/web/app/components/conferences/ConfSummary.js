@@ -51,8 +51,8 @@ function ConfSummary(props) {
           </Box>
         </Box>
       </Box>
-      <Dialog
-        style={{}}
+      <Dialog fullScreen
+        // style={{width: window.innerWidth, height: window.innerHeight}}
         open={open}                                                          
         onClose={()=>setOpen(false)}
         aria-labelledby="simple-modal-title"
