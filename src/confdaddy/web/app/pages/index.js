@@ -43,8 +43,8 @@ export default function Home({data, pagination}) {
   return (
     <React.Fragment>
       <SeoMeta 
-        title='Confdaddy' desc='Find and track conferences that matter to you' 
-        canonical={window.location.hostname}
+        title='ConfDaddy' desc='Find and track conferences that matter to you' 
+        // canonical={window.location.hostname}
       />
       <Box style={{display: 'flex', flexDirection: 'row', marginLeft: 10, marginRight: 10}}>
         <Box style={{flex: 8}}>
