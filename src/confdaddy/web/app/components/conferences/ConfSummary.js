@@ -1,5 +1,6 @@
+import React, { useState } from "react";
 import {
-    Box, Chip, 
+    Box, Dialog
 } from '@material-ui/core'
 import moment from 'moment'
 import classes from './Conf.module.css'
@@ -7,18 +8,24 @@ import classes from './Conf.module.css'
 
 
 function ConfSummary(props) {
+  const [open, setOpen] = useState(false);
   if (!props.conference.name) {
     return null
   }
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
   return (
-    <a  target='_blank' href={props.conference.link} rel='noopener noreferrer'>
+    // <a  target='_blank' href={props.conference.link} rel='noopener noreferrer'>
+    <React.Fragment>
       <Box id='conference-card' 
         style={{
           display: 'flex', flexDirection: 'row',
           backgroundColor: 'white', borderRadius: 4, height: 125, marginTop: 30, padding: 20
         }}
+        onClick={()=>setOpen(true)}
       >
-        
         <Box id='conference-summary' 
           style={{flex: 3, display: 'flex', flexDirection: 'column'}}
         >
@@ -43,9 +50,19 @@ function ConfSummary(props) {
             <Chip style={{marginRight: 10}} label='Hacking' size='small'/> */}
           </Box>
         </Box>
-        
       </Box>
-    </a>
+      <Dialog
+        style={{}}
+        open={open}                                                          
+        onClose={()=>setOpen(false)}
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+      >
+        <div>Hello Modal</div>
+        <button onClick={()=>setOpen(false)}>Close</button>
+      </Dialog>
+    </React.Fragment>
+    //</a>
   );
 }
 
