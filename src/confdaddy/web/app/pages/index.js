@@ -1,7 +1,10 @@
+import React from 'react'
 import { Box } from '@material-ui/core'
 import { Timeline } from 'react-twitter-widgets'
 import MediaQuery from 'react-responsive'
 import ConfList from './../components/conferences/ConfList'
+import SeoMeta from './../components/seo/SeoMeta'
+
 
 function _renderTwitterFeeds () {
   return (
@@ -20,23 +23,6 @@ function _renderTwitterFeeds () {
 }
 
 
-export default function Home({data, pagination}) {
-  return (
-    <Box style={{display: 'flex', flexDirection: 'row', marginLeft: 10, marginRight: 10}}>
-      <Box style={{flex: 8}}>
-        <ConfList data={data} pagination={pagination}/>
-      </Box>
-      <MediaQuery minWidth={680}>
-        <Box style={{flex: 4}}>
-          {_renderTwitterFeeds()}
-        </Box>
-      </MediaQuery>
-      
-    </Box>
-  )
-}
-
-
 export async function getServerSideProps() {
   const API_URL = 'https://platform.monoxor.com/service/confdaddy/conferences?page_num=1'
   const res = await fetch(API_URL)
@@ -50,4 +36,26 @@ export async function getServerSideProps() {
           pagination
       }
   }
+}
+
+
+export default function Home({data, pagination}) {
+  return (
+    <React.Fragment>
+      <SeoMeta 
+        title='Confdaddy' desc='Find and track conferences that matter to you' 
+        canonical={window.location.hostname}
+      />
+      <Box style={{display: 'flex', flexDirection: 'row', marginLeft: 10, marginRight: 10}}>
+        <Box style={{flex: 8}}>
+          <ConfList data={data} pagination={pagination}/>
+        </Box>
+        <MediaQuery minWidth={680}>
+          <Box style={{flex: 4}}>
+            {_renderTwitterFeeds()}
+          </Box>
+        </MediaQuery>
+      </Box>
+    </React.Fragment>
+  )
 }
