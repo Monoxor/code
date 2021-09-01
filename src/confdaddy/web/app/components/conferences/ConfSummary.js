@@ -58,8 +58,8 @@ function ConfSummary(props) {
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >
-        <div>Hello Modal</div>
-        <button onClick={()=>setOpen(false)}>Close</button>
+        <button onClick={()=>setOpen(false)} style={{height: 50}}>Close</button>
+        <iframe height='100%' src={props.conference.link}></iframe>
       </Dialog>
     </React.Fragment>
     //</a>
