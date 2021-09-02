@@ -8,6 +8,15 @@ const Meta = (props) => (
     {/* <link rel="stylesheet" href="" />   */}
     <link rel="canonical" href={props.canonical} />
     {/* <script type="text/javascript" src="" ></script> */}
+    {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z5ZPZXG8BB"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-Z5ZPZXG8BB');
+        </script>
     </Head>
 )
 export default Meta
