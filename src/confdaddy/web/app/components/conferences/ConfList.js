@@ -2,14 +2,14 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { useEffect, useState } from "react";
 import ConfSummary from "./ConfSummary";
 
-
+const API_URL = 'https://platform.monoxor.com/service/confdaddy/conferences'
 const ConfList = ( {data, pagination} ) => {
   const [conferences, setConferences] = useState(data);
   const [hasMore, setHasMore] = useState(true)
   const [pageNum, setPageNum] = useState(2)
 
   const getMoreConferences = async () => {
-    const res = await fetch(`https://confdaddy-services-i7cau.ondigitalocean.app/service/confdaddy/conferences?page_num=${pageNum}`);
+    const res = await fetch(`${API_URL}?page_num=${pageNum}`);
     let newConferences = await res.json();
     pagination = newConferences.pagination
     newConferences = newConferences.data

@@ -20,6 +20,7 @@ spec:
   - host: platform.monoxor.com
     http:
       paths:
-      - backend:
-          serviceName: echo2
+      - path: /service/confdaddy
+        backend:
+          serviceName: confdaddy-services-dev
           servicePort: 80
