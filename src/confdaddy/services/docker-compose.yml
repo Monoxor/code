@@ -1,9 +1,9 @@
 version: '3'
 services:
-  tech-conferences-svc:
+  confdaddy-services:
     build: .
-    image: tech-conferences-svc
-    container_name: tech-conferences-svc
+    image: confdaddy-services
+    container_name: confdaddy-services
     ports:
       - 5000:5000
     volumes:
