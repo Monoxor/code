@@ -31,6 +31,8 @@ def index():
 def getTechConferences():
     print (request.args.get('page_num'))
     page_num = int(request.args.get('page_num'))
+    search_term = request.args.get('search_term')
+
     offset = 5*(page_num-1)
     limit = 5
     total_rows_count = 0
@@ -43,15 +45,25 @@ def getTechConferences():
         port = "25060"
     ) 
     cur = conn.cursor()
-    cur.execute(
-        '''
+    query = '''
+        SELECT id, name, description, link, img_link, start_date, end_date,
+        COUNT(*) OVER() AS total_count
+        FROM conferences 
+        WHERE status='approved'
+        LIMIT {} 
+        OFFSET {}
+    '''.format(limit, offset)
+    if (search_term):
+        query = '''
             SELECT id, name, description, link, img_link, start_date, end_date,
             COUNT(*) OVER() AS total_count
             FROM conferences 
+            WHERE status='approved'
+            AND name LIKE '%{}%'
             LIMIT {} 
             OFFSET {}
-        '''.format(limit, offset)
-    )
+        '''.format(search_term, limit, offset)
+    cur.execute(query)
     rows = cur.fetchall()
     fetched_rows_count = len(rows)
     conferences = []
@@ -77,6 +89,7 @@ def getTechConferences():
         "data": conferences
     }
     return "Tech Conferences List"
+
 
 @app.route('/tech-conferences/feed')
 def getFeed():
