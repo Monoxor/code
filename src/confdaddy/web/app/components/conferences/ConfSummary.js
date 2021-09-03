@@ -22,7 +22,7 @@ function ConfSummary(props) {
       <Box id='conference-card' 
         style={{
           display: 'flex', flexDirection: 'row',
-          backgroundColor: 'white', borderRadius: 4, height: 125, marginTop: 30, padding: 20
+          backgroundColor: 'white', borderRadius: 4, height: 130, marginTop: 30, padding: 20
         }}
         onClick={()=>setOpen(true)}
       >
@@ -30,20 +30,20 @@ function ConfSummary(props) {
           style={{flex: 3, display: 'flex', flexDirection: 'column'}}
         >
           <Box style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
-            <Box style={{fontSize: 20, fontWeight: 'bold'}}>{props.conference.name}</Box>
-            <Box style={{
-              display: 'flex', flexDirection: 'row', 
-              fontSize: 12, fontStyle: 'italic', fontWeight: 200
-            }}>
-              <Box>
-                {moment(props.conference.start_date).format('MMM Do')} 
-                {' to '} 
-                {moment(props.conference.end_date).format('MMM Do')}
-              </Box> 
-            </Box>
+            <Box style={{fontSize: 20, fontWeight: 'bold'}} className={classes.confName}>{props.conference.name}</Box>
           </Box>
-          <Box style={{flex: 1, marginTop: 15, fontSize: 12, fontStyle: 'italic'}}>
-            {props.conference.description.substring(0, 200)}... (more)
+          <Box style={{
+            display: 'flex', flexDirection: 'row', 
+            fontSize: 12, fontStyle: 'italic', fontWeight: 200
+          }}>
+            <Box style={{marginTop: 2}}>
+              {moment(props.conference.start_date).format('MMM Do')} 
+              {' to '} 
+              {moment(props.conference.end_date).format('MMM Do')}
+            </Box> 
+          </Box>
+          <Box className={classes.giveMeEllipsis} style={{flex: 1, marginTop: 15, fontSize: 12, fontStyle: 'italic'}}>
+            {props.conference.description}
           </Box>
           <Box style={{marginRight: 20, marginTop: 10, alignItems: 'space-around', }}>
             {/* <Chip style={{marginRight: 10}} label='Security' size='small'/>
