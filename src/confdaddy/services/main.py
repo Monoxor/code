@@ -50,6 +50,7 @@ def getTechConferences():
         COUNT(*) OVER() AS total_count
         FROM conferences 
         WHERE status='approved'
+        AND end_date > CURRENT_DATE
         LIMIT {} 
         OFFSET {}
     '''.format(limit, offset)
@@ -59,6 +60,7 @@ def getTechConferences():
             COUNT(*) OVER() AS total_count
             FROM conferences 
             WHERE status='approved'
+            AND end_date > CURRENT_DATE
             AND name LIKE '%{}%'
             LIMIT {} 
             OFFSET {}
