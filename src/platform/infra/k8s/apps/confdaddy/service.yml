@@ -25,6 +25,6 @@ spec:
     spec:
       containers:
       - name: confdaddy-services-dev
-        image: registry.digitalocean.com/monoxor/confdaddy-services:66d7b52
+        image: registry.digitalocean.com/monoxor/confdaddy-services:967b8dd
         ports:
         - containerPort: 5000
