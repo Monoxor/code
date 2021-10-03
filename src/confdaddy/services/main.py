@@ -33,8 +33,8 @@ def getTechConferences():
     page_num = int(request.args.get('page_num'))
     search_term = request.args.get('search_term')
 
-    offset = 5*(page_num-1)
-    limit = 5
+    offset = 10*(page_num-1)
+    limit = 10
     total_rows_count = 0
     next_page_exists = False
     conn = psycopg2.connect(
